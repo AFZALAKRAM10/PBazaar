@@ -85,8 +85,12 @@
         </div>   
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3" style="height:1000px ;background-color:#ffffff">
-            <button  type="button" class="btn btn-lg btn-success btn-block">Post an Ad</button>
+        <div class="col-lg-3 col-md-3 col-sm-3" style="height:1000px ;background-color:#ff0000">
+            <form action="/Home/Contact" style="margin-top:200px">
+                <center>
+                    <button type="button" class="btn btn-lg btn-success btn-block">Post an Ad</button>
+              </center>
+            </form>
 
             
         </div>
@@ -106,24 +110,25 @@
             </ol>  
 
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3" style="height:1000px ;background-color:#ffffff">
-            <h4><label for="input">Select Catagory:</label></h4>
+        <div class="col-lg-3 col-md-3 col-sm-3" style="height:1000px ;background-color:#ff0000 ;">
+            <form style="margin-top:100px">
+                <h4><label for="input">Select Catagory:</label></h4>
 
 
-            <select class="form-control input-lg" id="sel1">
-                <option>---Catagory---</option>
-                <option>Mobile</option>
-                <option>Computer</option>
-                <option>Electronics</option>
-                <option>Vehicles</option>
-            </select>
+                <select class="form-control input-lg" id="sel1" style="background:#4cff00">
+                    <option>---Catagory---</option>
+                    <option>Mobile</option>
+                    <option>Computer</option>
+                    <option>Electronics</option>
+                    <option>Vehicles</option>
+                </select>
 
 
-            <input class="form-control input-lg" id="ex1" type="text">
+                <input class="form-control input-lg" id="ex1" type="text" placeholder="Type Name, id of Ad">
 
 
-            <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-search"></span> Search</button>
-
+                <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-search"></span> Search</button>
+            </form>
             </div>
     </div>
    
