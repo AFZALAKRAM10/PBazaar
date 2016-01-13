@@ -3,10 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/modern-business.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+   
+    @Scripts.Render("~/bundles/bootstrap")
+
+   
+    
 
 </head>
 <body>
@@ -21,21 +24,49 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <ul class="nav navbar-nav nav-tabs-justified navbar-right">
-
-                        <li>
-                            <a href="/Home/SignIn">SignIn</a>
-                        </li>
-                        <li>
-                            <a href="/Home/SignUp">Register</a>
-                        </li>
+                    @if(Session["Name"] == null)
+                        {
+                            <li>
+                                <a href="/Home/SignIn">SignIn</a>
+                            </li>
+                            <li>
+                                <a href="/Home/SignUp">Register</a>
+                            </li>
+                        }
+                       
+                        @if(Session["Name"] != null)
+                        {
+                              <li>
+                                    <a href="/Users/MyProfile">@Session["Name"] </a>
+                              </li>
+                            
+                            
+                        }
                         <li>
                             <a href="/Home/About">About us</a>
                         </li>
                         <li>
                             <a href="/Home/Contact">Contact us</a>
                         </li>
+                        @if (Session["Name"] != null)
+                        {
+                            <li>
+                                <a href="#">Post A Add </a>
+                            </li>
+
+
+                        }
+                        @if (Session["Name"] != null)
+                        {
+                            <li>
+                                <a href="/Users/LogOut">Log out</a>
+                            </li>
+
+
+                        }
 
                     </ul>
+                    
                     <!-- /.navbar-collapse -->
                 </div>
             </div>
@@ -48,12 +79,49 @@
         @RenderBody()
         <hr />
         <footer>
+            <div class="row">
+                <div class="col-lg-6">
+                    
+                    <p>&copy; @DateTime.Now.Year - Pakistan Bazaar</p>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <p><b>ContactUs</b> </p>
+
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="https://www.facebook.com/M.AfzalAkram">Facebook
+                                <img src="~/Images/fb.png" style="height:20px;width:20px" />
+                            </a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="https://twitter.com/">Twitter
+                                <img src="~/Images/tw.png" style="height:20px;width:20px" />
+                            </a>
+
+                        </div>
+                          
+                                            
+                    </div>
+
+                        
+                           
+                        
+                           
+                     
+                        
+                            
+                        
+                </div>
+            </div>
             <center><p style="background-color:#808080"><b>Live with Style</b></p></center>
-            <p>&copy; @DateTime.Now.Year - Pakistan Bazaar</p>
         </footer>
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
