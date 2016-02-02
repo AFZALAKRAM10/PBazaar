@@ -53,7 +53,7 @@
                     <li>
                         <a href="/Home/Contact">Contact us</a>
                     </li>
-                    @if (Session["Name"] != null)
+                    @if ((string)Session["Name"] == "User" )
                     {
                         <li>
                             <a href="/PostAd/index">Post A Add </a>
