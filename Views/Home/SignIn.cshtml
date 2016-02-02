@@ -1,64 +1,45 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@model PakistanBazaar.Models.User
 
-<head>
+@{
+    ViewBag.Title = "SignIn";
+}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<h2>SignIn</h2>
 
-    <title>@ViewBag.Title</title>
-
-
-  
-
-</head>
-
-<body>
-
-   
-
-    <!-- Page Content -->
-   <div class="container" style="background-color:#0094ff">
-       @if (@ViewBag.message != "") { 
-       <h2 style="color:red;">@ViewBag.message</h2>
-       }
-           <center><h2 class="text-danger">Please SignIn</h2><hr></center>
-        <form class="form-horizontal" role="form" style="margin-left:300px"  action="/Home/VerifyLogin">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Email:</label>
-                <div class="col-sm-3">
-                    <input type="email" class="form-control" name="EmailID" id="email" placeholder="Email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="pwd">Password:</label>
-                <div class="col-sm-3">
-                    <input type="password" class="form-control"  name="Password" id="pwd" placeholder="Password">
-                </div>
-            </div>
-         <!-- <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-3">
-                    <div class="checkbox">
-                        <label><input type="checkbox"> Remember me</label>
-                    </div>
-                </div>
-            </div>  -->
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-3">
-                    <button type="submit" class="btn btn-success">Log In</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-   
-
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
     
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-</body>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-</html>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Passward, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Passward, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Passward, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
