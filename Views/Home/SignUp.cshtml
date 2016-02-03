@@ -5,13 +5,13 @@
 }
 
 <h2>SignUp</h2>
-
+<script src="~/Scripts/jquery.js"></script>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>User</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -19,6 +19,42 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                <div>
+
+                 <!--   Enter Your Email ID: <input type="text" placeholder="ID" id="UserName" name="Email" size="35" /><br /><br />  -->
+                    
+
+                    <input type="button" id="b1" value="Check" />
+                    <div id="result"></div>
+
+                    <script>
+
+                        $(document).ready(function () {
+
+                            $('#checking').hide();
+
+                            $('#b1').click(function () {
+
+                                var userName = $('#UserName').val();
+
+                                //alert('User Name ='+ userName);
+                                $('#checking').show();
+                                $.getJSON("/home/CheckUserName?UserName=" + userName, function (data) {
+                                    $('#checking').hide();
+                                    if (data) {
+                                        $('#result').text("User already exists");
+
+                                    }
+                                    else {
+                                        $('#result').text("User Name is available");
+                                    }
+                                });
+
+                            });
+
+                        });
+                    </script>
+                </div>
             </div>
         </div>
 
@@ -48,7 +84,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="SignUp" class="btn btn-default" />
             </div>
         </div>
     </div>
